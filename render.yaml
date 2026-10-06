@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: botswana-quick-deals
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: PAYMENT_PROVIDER
+        value: Pata
+      - key: PAYMENT_CHECKOUT_URL
+        sync: false
+      - key: PAYMENT_WEBHOOK_SECRET
+        sync: false
